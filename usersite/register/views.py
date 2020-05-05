@@ -13,7 +13,7 @@ def register(response):
             ## Save to Dynamodb
             save_to_db(form)
             messages.success(response, f'Account created!')
-            return redirect("/")
+            return redirect("/register_success")
     else:
         form = RegisterForm()
 
@@ -22,11 +22,14 @@ def register(response):
 def login_success(response):
     return render(response, "register/login_success.html")
 
+def register_success(response):
+    return render(response, "register/register_success.html")
+
 def save_to_db(form):
-    DYNAMO_ENDPOINT = getattr(settings, "DYNAMO_ENDPOINT", None)
-    dynamodb = boto3.resource('dynamodb', region_name='us-east-1', endpoint_url=DYNAMO_ENDPOINT)
+    # DYNAMO_ENDPOINT = getattr(settings, "DYNAMO_ENDPOINT", None)
+    # dynamodb = boto3.resource('dynamodb', region_name='us-east-1', endpoint_url=DYNAMO_ENDPOINT)
     # Locally debug mode
-    # dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
+    dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
     table = dynamodb.Table('userRegister')
     table.put_item(
         Item={
