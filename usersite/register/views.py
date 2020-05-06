@@ -10,6 +10,7 @@ def register(response):
         form = RegisterForm(response.POST)
         if form.is_valid():
             form.save()
+            # username = form.cleaned_data.get('username')
             ## Save to Dynamodb
             save_to_db(form)
             messages.success(response, f'Account created!')
@@ -20,6 +21,8 @@ def register(response):
     return render(response, "register/register.html", {"form": form})
 
 def login_success(response):
+    # form = RegisterForm(response.POST)
+    # username = form.cleaned_data.get('username')
     return render(response, "register/login_success.html")
 
 def register_success(response):

@@ -1,9 +1,44 @@
 {% extends "main/base.html" %}
 
-{% block title %}
-{% endblock %}
+{% load static %}
 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">
+    {% block title %}{% endblock %}
+</head>
 
-{% block content %}
-<h3 class="mt-2">You are login!</h3>
-{% endblock %}
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+          <div class="container">
+            <a class="navbar-brand mr-4" href="/">User Web</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+                <div class="navbar-nav mr-auto">
+                    
+                  </div>
+                <!-- Navbar Right Side -->
+                <div class="navbar-nav">
+                  <a class="nav-item nav-link" href="/login">Logout</a>
+                </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div id="content" name="content" class="main">
+		<div class="row justify-content-center">
+			<div class="col-8">
+				
+
+                {% block content %}
+
+                {% endblock %}
+			</div>
+		</div>
+	</div>
+</body>
