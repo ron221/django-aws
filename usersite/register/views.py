@@ -33,7 +33,7 @@ def save_to_db(form):
     dynamodb = boto3.resource('dynamodb', region_name='us-east-1', endpoint_url=DYNAMO_ENDPOINT)
     # Locally debug mode
     # dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
-    table = dynamodb.Table('userRegister')
+    table = dynamodb.Table('user')
     table.put_item(
         Item={
             'username': form.cleaned_data.get('username'),
